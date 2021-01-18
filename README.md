@@ -29,7 +29,15 @@ A MiniMall Project created by Lu and Lu
         按品类筛选的下拉菜单
         右侧悬浮功能栏，回到顶部之类的功能
 
-
+    shangpin = shangpin.get().all()
+    {'item' : shangpin}
+    {% for item in shangpin %}
+        item.xx
+        item.xx
+        输出到一个小方格里
+    {% endfor %}
+    拿到一堆小方格以后再通过css显示成好看的样式
+    然后再研究怎么划分页面
 
 大概流程：
     前端搭完
