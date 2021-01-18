@@ -32,8 +32,10 @@ A MiniMall Project created by Lu and Lu
 
 
 大概流程：
-    前端后端写完
-    管理员账户
+    前端搭完
+    写管理员账户相关功能
+    测试上传信息
+    写普通用户相关功能
     debugg
 
 
