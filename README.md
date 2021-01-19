@@ -47,7 +47,9 @@ A MiniMall Project created by Lu and Lu
     debugg
 
 
-
+x管理员账户和管理员相关功能（上传商品信息，图片，价格，描述）
+随便写一个商品详情页，通过for循环显示到前端页面上
+购物车功能
 
 
 后端逻辑:
