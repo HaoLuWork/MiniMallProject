@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for item in goods %}
+    
         <div class="container">
             <div class="row">
+                {% for item in goods %}
                 <div class="col-md">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ MEDIA_URL }}{{item.image}}" class="card-img-top" alt="...">
+                        <img src="{{MEDIA_URL}}{{item.goods_img}}" class="card-img-top" alt="...">
                         <div class="card-body">
                         <h5 class="card-title">{{item.goods_name}}</h5>
                         <p class="card-text">{{item.goods_desc}} </p>
-                        <p class="card-text">{{item.goods_price}}</p>
+                        <p class="card-text">价格：{{item.goods_price}}</p>
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             0
@@ -28,7 +29,8 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-    {% endfor %}
+    
 {% endblock %}
