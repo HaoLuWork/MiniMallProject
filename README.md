@@ -2,9 +2,12 @@
 A MiniMall Project created by Lu and Lu
 前端页面：
     一个主页，不要求登陆
-        x页面顶部有一个导航栏
+        -页面顶部有一个导航栏
+            注册和登陆页面，以及可能存在的其他导航位置
         -主体上方：排序功能，分别提供类型，价格，时间
-        (差后端循环)页面主体是方格，内容是商品图片及简介，下方有悬浮的加购物车按钮
+        x页面主体是方格，内容是商品图片及简介，下方有悬浮的加购物车按钮
+            对应的购物车功能还没写（前后端都没写）
+            css还需要完善（只差前端）
         x底部：切换页面的状态栏
         -最底部关于信息
 
@@ -15,7 +18,7 @@ A MiniMall Project created by Lu and Lu
     一个登陆和一个注册页面
 
     商品详情页面
-        xiangqing/<int:id>
+        
         对应商品的图片，介绍
         选择数量，加入购物车
 
@@ -29,15 +32,17 @@ A MiniMall Project created by Lu and Lu
         按品类筛选的下拉菜单
         右侧悬浮功能栏，回到顶部之类的功能
 
-    shangpin = shangpin.get().all()
-    {'item' : shangpin}
-    {% for item in shangpin %}
-        item.xx
-        item.xx
-        输出到一个小方格里
-    {% endfor %}
+
     拿到一堆小方格以后再通过css显示成好看的样式
     然后再研究怎么划分页面
+
+
+
+19号目标：登陆页面，注册页面，悬浮购物车页面，商品详情页面，的前端html
+和主页的css布局调整
+
+
+
 
 大概流程：
     前端搭完
