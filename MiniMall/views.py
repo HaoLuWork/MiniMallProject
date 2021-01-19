@@ -4,9 +4,12 @@ from MiniMall.models import * """
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from MiniMall.models import GoodsInfo
 
 def main_page_action(request):
-    return render(request,'home.html')
+    # return render(request,'home.html')
+    # goods = GoodsInfo.objects.get.all()
+    return render(request, 'xiangqing.html', {'goods' : GoodsInfo.objects.all()})
 
 
 
@@ -50,3 +53,8 @@ def register_action(request):
     login(request, new_user)
     return render(request,'home.html')
  """
+
+def xiangqing(request):
+    if request.meghot=='GET':
+        goods = GoodsInfo.get.all()
+        return render(request, 'xiagnqing.html', {'goods' : goods})
