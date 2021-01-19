@@ -1,4 +1,4 @@
-class LoginForm(forms.Form):
+""" class LoginForm(forms.Form):
     username = forms.CharField(max_length = 20)
     password = forms.CharField(max_length = 200, widget = forms.PasswordInput())
     def clean(self):
@@ -37,4 +37,4 @@ class RegistrationForm(forms.Form):
         username = cleaned_data.get('username')
         if User.objects.filter(username__exact=username):
             raise
-        return cleaned_data
+        return cleaned_data """

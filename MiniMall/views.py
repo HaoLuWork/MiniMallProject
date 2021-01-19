@@ -1,11 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from MiniMall.forms import *
-from MiniMall.models import *
+""" from MiniMall.forms import *
+from MiniMall.models import * """
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
-def login_action(request):
+def main_page_action(request):
+    return render(request,'home.html')
+
+
+
+
+
+""" def login_action(request):
     context = {}
     if request.method == 'GET':
         context['form'] = LoginForm()
@@ -15,7 +22,7 @@ def login_action(request):
     new_user = authenticate(username=input_info.cleaned_data['username'],
                             password=input_info.cleaned_data['password'])
     login(request, new_user)
-    return redirect(reverse(''))
+    return render(request,'home.html')
 
 
 def register_action(request):
@@ -41,9 +48,5 @@ def register_action(request):
                             password=form.cleaned_data['password1'])
 
     login(request, new_user)
-    return redirect(reverse(''))
-
-
-
-
-
+    return render(request,'home.html')
+ """
