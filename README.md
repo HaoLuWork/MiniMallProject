@@ -33,29 +33,6 @@ A MiniMall Project created by Lu and Lu
         右侧悬浮功能栏，回到顶部之类的功能
 
 
-    拿到一堆小方格以后再通过css显示成好看的样式
-    然后再研究怎么划分页面
-
-
-
-19号目标：登陆页面，注册页面，悬浮购物车页面，商品详情页面，的前端html
-和主页的css布局调整
-前端的自动分页功能
-
-
-
-大概流程：
-    前端搭完
-    x写管理员账户相关功能
-    x测试上传信息
-    写普通用户相关功能
-    购物车和结算相关功能
-    debugg
-
-
-购物车功能
-
-
 后端逻辑:
     游客用户可以正常浏览主页，浏览商品详情，筛选，排序
     购物车和登录状态绑定，当游客需要使用购物车功能跳转至登陆页面
@@ -68,33 +45,61 @@ A MiniMall Project created by Lu and Lu
         forms.py:
         add_form
 
-        models.py
-        shangpin class
-            number(剩余库存)
-            picture
-            text
-
         address class
             姓名，电话，国家，城市，街道，邮编
         简单一点的地址方案：大平层
-        Profile class
-            姓名
-            电话
-            国家
-            城市
-            街道
-            邮编
+            Profile class
+                姓名
+                电话
+                国家
+                城市
+                街道
+                邮编
         复杂一点的地址方案，mtmf
-        Profile class
-            user = foreignKey(User, )
-            text
-            email
-            phone
-            address = ManyToManyField(address, )
-
-        views.py
-            还有很多
-    
+            Profile class
+                user = foreignKey(User, )
+                text
+                email
+                phone
+                address = ManyToManyField(address, )
 
 
 
+大概流程：
+    前端搭完
+    x写管理员账户相关功能
+    x测试上传信息
+    写普通用户相关功能
+    购物车和结算相关功能
+    debugg
+
+
+
+19号目标：
+x登陆页面，注册页面，悬浮购物车页面，商品详情页面，的前端html
+x和主页的css布局调整
+-卡片高度
+前端的自动分页功能
+结账（单独的购物车）页面
+
+购物车功能
+
+
+20号小总结
+    目前遇到的小问题：主页卡片高度不一致，显示效果不美观
+
+登陆页面的逻辑：
+    主页上按照登陆状态显示账户下拉菜单的内容：
+        未登录时：显示登陆按钮
+        已经登陆后：显示订单，账户管理，和登出
+
+
+20号目标
+购物车后端功能实现出来
+登陆功能的后端
+用户的model
+购物车的model
+-商品分类的model
+详情页的显示，以及主页和详情页的链接功能
+
+xiangqing/<goods_id:id>
