@@ -9,7 +9,7 @@ from MiniMall.models import GoodsInfo
 def main_page_action(request):
     # return render(request,'home.html')
     # goods = GoodsInfo.objects.get.all()
-    return render(request, 'xiangqing.html', {'goods' : GoodsInfo.objects.all()})
+    return render(request, 'Register.html', {'goods' : GoodsInfo.objects.all()})
 
 
 

@@ -4,13 +4,14 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md">
+      {% for item in goods %}
+        <div class="col-md-4">
             <div class="card" style="width: 18rem;">
-                <img src="static/test.png" class="card-img-top" alt="...">
+                <img src="{{MEDIA_URL}}{{item.goods_img}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">item description </p>
-                  <p class="card-text">price </p>
+                  <h5 class="card-title">{{item.goods_name}}</h5>
+                  <p class="card-text">{{item.goods_desc}}</p>
+                  <p class="card-text">Price: {{item.goods_price}}</p>
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                       0
@@ -27,7 +28,9 @@
                   <a href="#" class="btn btn-primary">Add to cart</a>
                 </div>
               </div>
+              <br>
         </div>
+        {% endfor %}  
     </div>
 </div>
 
