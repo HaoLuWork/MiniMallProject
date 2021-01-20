@@ -57,6 +57,8 @@ def register_action(request):
                             password=input_info.cleaned_data['password1'])
 
     login(request, new_user)
+    new_cart = OrderInfo()
+    new_cart.save()
     return redirect(reverse('home'))
 
 @login_required
@@ -78,3 +80,10 @@ def add_cart(request, id):
         goods_count = 1
     response.set_cookie(id, goods_count)
     return response
+    # order = OrderInfo.objects.create(order_id=order_id,
+    #                                 user=user,
+    #                                 addr=addr_obj,
+    #                                 pay_method=pay_id,
+    #                                 transit_price=transport_price,
+    #                                 product_count=total_count,
+    #                                 product_price=total_price)
