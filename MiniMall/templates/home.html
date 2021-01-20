@@ -2,14 +2,22 @@
 
 
 {% block content %}
+
 <div class="container">
     <div class="row">
       {% for item in goods %}
         <div class="col-md-4">
             <div class="card" style="width: 18rem;">
-                <img src="{{MEDIA_URL}}{{item.goods_img}}" class="card-img-top" alt="...">
+              {% csrf_token %}
+                <!-- 生成一个可点击的图片，链接至该商品的详情页面 -->
+                <a href="{% url 'details' item.id %}">
+                  <img src="{{MEDIA_URL}}{{item.goods_img}}" class="card-img-top" alt="..." width="200px" height="200px">
+                </a>
                 <div class="card-body">
-                  <h5 class="card-title">{{item.goods_name}}</h5>
+                  <!-- 生成一段可点击的文字，链接至该商品的详情页 -->
+                  <a href="{% url 'details' item.id %}">
+                    <h5 class="card-title">{{item.goods_name}}</h5>
+                  </a>
                   <p class="card-text">{{item.goods_desc}}</p>
                   <p class="card-text">Price: {{item.goods_price}}</p>
                   <div class="dropdown">

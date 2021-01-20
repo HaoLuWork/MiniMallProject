@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<form>
+<!-- <form>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -15,5 +16,19 @@
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+  </form> -->
+  {% csrf_token %}
+  <form method='post' action="{% url 'login' %}">
+    <table>
+        {% for field in form.visible_fields %}
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                <td >{{ field }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% csrf_token %}
+    <button id="id_login_button" type="submit">登陆</button>
   </form>
+
 {% endblock %}

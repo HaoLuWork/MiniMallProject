@@ -1,5 +1,5 @@
 from django.contrib import admin
-from MiniMall.models import GoodsInfo
+from MiniMall.models import GoodsInfo, OrderInfo
 
 class GoodsInfoAdmin(admin.ModelAdmin):
     list_display=[  'id','goods_name', 'goods_price', 'goods_desc']
@@ -13,4 +13,11 @@ class GoodsInfoAdmin(admin.ModelAdmin):
     search_fields = ['id', 'goods_name']
 
 admin.site.register(GoodsInfo, GoodsInfoAdmin)
+
+class OrderInfoAdmin(admin.ModelAdmin):
+    list_display=['id', 'order_id', 'order_recv', 'order_tele', 'order_extra', 'order_status']
+    list_per_page = 15
+    search_fields = ['id', 'order_id', 'order_recv', 'order_tele']
+
+admin.site.register(OrderInfo, OrderInfoAdmin)
 # 需要在models里导入一个model类

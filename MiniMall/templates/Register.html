@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<form>
+<!-- <form>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>
@@ -45,5 +46,22 @@
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Sign in</button>
+  </form> -->
+  {% csrf_token %}
+  <form method="post" action="{% url 'register' %}">
+    <table>
+        {% for field in form.visible_fields %}
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                <td >{{ field }}</td>
+                <td class="errorlist">
+                    {% for error in field.errors %} {{ error }} {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% csrf_token %}
+    <button id="id_register_button" type="submit">注册</button>
   </form>
+
   {% endblock %}
