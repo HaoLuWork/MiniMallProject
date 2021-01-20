@@ -3,7 +3,7 @@ from django.urls import reverse, path
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from MiniMall.models import GoodsInfo
+from MiniMall.models import GoodsInfo, User_Profile
 from MiniMall.forms import LoginForm, RegistrationForm
 
 def main_page_action(request):
@@ -57,8 +57,7 @@ def register_action(request):
                             password=input_info.cleaned_data['password1'])
 
     login(request, new_user)
-    new_cart = OrderInfo()
-    new_cart.save()
+    create_profile(new_user)
     return redirect(reverse('home'))
 
 @login_required
@@ -68,18 +67,23 @@ def logout_action(request):
 
 @login_required
 def add_cart(request, id):
-    goods_id = request.GET.get('id','')
+    # if request.method=='GET':
+    #     all_cart_item = User_Profile.objects.get(username=request.user).cart.all()
+    #     return render(request, 'cart.html', {'goods' : all_cart_item})
+    goods_id = request.GET.get(id = id,'')
     # if goods_id:
     prev_url = request.META['HTTP_REFERER']
     # response = redirect("{% url 'details' id %}")
     response = redirect(prev_url)
-    goods_count = request.COOKIES.get(id)
+    goods_count = request.COOKIES.get(goods_id)
     if goods_count:
         goods_count = int(goods_count)+1
     else:
         goods_count = 1
-    response.set_cookie(id, goods_count)
+    response.set_cookie(goods_id, goods_count)
     return response
+
+
     # order = OrderInfo.objects.create(order_id=order_id,
     #                                 user=user,
     #                                 addr=addr_obj,
@@ -87,3 +91,7 @@ def add_cart(request, id):
     #                                 transit_price=transport_price,
     #                                 product_count=total_count,
     #                                 product_price=total_price)
+
+def create_profile(user):
+    new_profile = User_Profile(username = user)
+    new_profile.save()

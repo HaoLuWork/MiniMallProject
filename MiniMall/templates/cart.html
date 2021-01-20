@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table>
+        {% for item in goods %}
+            <tr>
+                <td>
+                    {{item.goods_name}}
+                </td>
+                <td>
+                    {{item.goods_price}}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

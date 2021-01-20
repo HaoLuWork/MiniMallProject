@@ -16,8 +16,11 @@ class GoodsInfo(models.Model):
 
 class User_Profile(models.Model):
     username = models.ForeignKey(User, on_delete=models.PROTECT)
+    # email = models.CharField(max_length=200)
     profile_photo = models.ImageField(upload_to='profile_photo')
-    cart = models.ManyToManyField(GoodsInfo, related_name= 'gouwuche')
+    # regestion_data = models.DateTimeField()
+    cart = models.ManyToManyField('GoodsInfo', related_name= 'gouwuche')
+    #预备一个清空购物车操作 my_object.relations.remove(*my_object.relations.all())
 
 
 class OrderInfo(models.Model):
