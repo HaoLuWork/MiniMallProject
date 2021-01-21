@@ -1,0 +1,60 @@
+{% extends 'base1.html' %}
+
+
+{% block content %}
+<script>
+        function myClick(n){
+            location.href = "OrderInfo.html";
+        }
+        function btnClick(){
+            alert("btn");
+            return false;
+        }
+        $(function(){
+
+        })
+    </script>
+    <script>
+        $(function(){
+            $('#myTabs a').click(function (e) {
+
+                $(this).tab('show')
+            });
+        })
+    </script>
+<div class="container">
+    <div class="row thumbnail center col-sm-12">
+        <div class="col-sm-12">
+            <h1 class="text-center" style="margin-bottom: 30px">Your Info</h1>
+        </div>
+
+        <ul class="nav nav-tabs nav-justified" id="myTabs">
+            <li class="active"><a href="#userHome" >User Info</a></li>
+            <li><a href="#editInfo">Information Changes </a></li>
+            <li><a href="#editPassword">Password Reset</a></li>
+            <li><a href="#orderManager">Order</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="userHome">
+                <p> user name：</p>
+                <p>password：</p>
+                <p>address：</p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="editInfo">
+                <label >user name：</label><input type="text">
+                <label >password：</label><input type="text">
+                <label >address：：</label><input type="text">
+                <p><button>submit</button></p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="editPassword">
+                <label >password：</label><input type="text">
+                <label >retype password：</label><input type="text">              
+                <p><button>submit</button></p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="orderManager">阿巴啊吧</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

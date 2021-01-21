@@ -1,19 +1,44 @@
-{% extends 'base.html' %}
+{% extends 'base1.html' %}
 
 {% block content %}
-    <table>
-        {% for item in goods %}
-            <tr>
-                <td>
-                    {{item.goods_name}}
-                </td>
-                <td>
-                    {{item.goods_price}}
-                </td>
-                <td>
-                    <!--数量  -->
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+<div class="container">
+    <div class="row thumbnail center">
+        <div class="col-sm-12">
+            <h1 class="text-center" style="margin-bottom: 30px">Shopping Cart</h1>
+        </div>
+        <div class=" list-group">
+
+            <div class="col-sm-12 thumbnail">
+                <div class="col-sm-4 line-center">Item</div>
+                <div class="col-sm-1 line-center">Price</div>
+                <div class="col-sm-4 line-center">Number</div>
+                <div class="col-sm-2 line-center">Total</div>
+                <div class="col-sm-1 line-center">Action</div>
+            </div>
+            <div class="col-sm-12  list-group-item">
+                <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
+
+                    <img src="../Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt=""/>
+                </div>
+                <div class="col-sm-3 line-center">apple</div>
+                <div class="col-sm-1 line-center">1.00</div>
+                <div class="col-sm-4 line-center">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </button>
+                    <input type="text" class="small" value="123"/>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="col-sm-2 line-center">10.00</div>
+                <div class="col-sm-1 line-center"><button class="btn btn-danger">Deltet</button></div>
+            </div>
+        </div>
+        <div class="col-sm-offset-7 col-sm-5" style="padding: 30px;">
+            <div class="col-sm-6 btn btn-success btn-block">back to home</div>
+            <div class="col-sm-6  btn btn-success btn-block">Submit</div>
+        </div>
+    </div>
+</div>
 {% endblock %}

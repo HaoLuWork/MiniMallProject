@@ -9,12 +9,12 @@ from MiniMall.forms import LoginForm, RegistrationForm
 def main_page_action(request):
     # return render(request,'home.html')
     # goods = GoodsInfo.objects.get.all()
-    return render(request, 'home.html', {'goods' : GoodsInfo.objects.all()})
+    return render(request, 'base1.html', {'goods' : GoodsInfo.objects.all()})
 
-def item_details(request, id):
+""" def item_details(request, id):
     item = GoodsInfo.objects.get(id = id)
     return render(request, 'item.html', {'item' : item})
-
+ """
 
 
 def login_action(request):
@@ -65,23 +65,23 @@ def logout_action(request):
     logout(request)
     return redirect(reverse('home'))
 
-@login_required
-def add_cart(request, id):
+""" @login_required
+ """""" def add_cart(request, id):
     # if request.method=='GET':
     #     all_cart_item = User_Profile.objects.get(username=request.user).cart.all()
     #     return render(request, 'cart.html', {'goods' : all_cart_item})
-    goods_id = request.GET.get(id = id,'')
-    # if goods_id:
-    prev_url = request.META['HTTP_REFERER']
-    # response = redirect("{% url 'details' id %}")
-    response = redirect(prev_url)
-    goods_count = request.COOKIES.get(goods_id)
-    if goods_count:
-        goods_count = int(goods_count)+1
-    else:
-        goods_count = 1
-    response.set_cookie(goods_id, goods_count)
-    return response
+        goods_id = request.GET.get(id = id,'')
+        # if goods_id:
+        prev_url = request.META['HTTP_REFERER']
+        # response = redirect("{% url 'details' id %}")
+        response = redirect(prev_url)
+        goods_count = request.COOKIES.get(goods_id)
+        if goods_count:
+            goods_count = int(goods_count)+1
+        else:
+            goods_count = 1
+        response.set_cookie(goods_id, goods_count)
+    return response """
 
 
     # order = OrderInfo.objects.create(order_id=order_id,
