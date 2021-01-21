@@ -19,18 +19,6 @@ class LoginForm(forms.Form):
 
 class RegistrationForm(forms.Form):
     
-    # username   = forms.CharField(max_length = 20,
-    #                             label = 'Name')
-    # password1  = forms.CharField(max_length = 200, 
-    #                              label='Password', 
-    #                              widget = forms.PasswordInput())
-    # password2  = forms.CharField(max_length = 200, 
-    #                              label='Confirm',  
-    #                              widget = forms.PasswordInput())
-    # email      = forms.CharField(max_length=50,
-    #                              widget = forms.EmailInput())
-    # first_name = forms.CharField(max_length=20)
-    # last_name  = forms.CharField(max_length=20)
     username = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'id': 'id_username'}))
     password1 = forms.CharField(max_length=200, label='Password', widget=forms.PasswordInput(
         attrs={'id': 'id_password'}))
@@ -45,13 +33,6 @@ class RegistrationForm(forms.Form):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords did not match.")
         return cleaned_data
-
-    # def clean_username(self):
-    #     cleaned_data = super().clean()
-    #     username = cleaned_data.get('username')
-    #     if User.objects.filter(username__exact=username):
-    #         raise forms.ValidationError("Username is already taken.")
-    #     return cleaned_data
 
     def clean_username(self):
         username = self.cleaned_data.get('username')

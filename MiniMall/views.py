@@ -3,18 +3,10 @@ from django.urls import reverse, path
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from MiniMall.models import GoodsInfo, User_Profile
+from MiniMall.models import GoodsInfo, User_Profile, OrderGoods
 from MiniMall.forms import LoginForm, RegistrationForm
 
-def main_page_action(request):
-    # return render(request,'home.html')
-    # goods = GoodsInfo.objects.get.all()
-    return render(request, 'base1.html', {'goods' : GoodsInfo.objects.all()})
 
-""" def item_details(request, id):
-    item = GoodsInfo.objects.get(id = id)
-    return render(request, 'item.html', {'item' : item})
- """
 
 
 def login_action(request):
@@ -32,6 +24,15 @@ def login_action(request):
                             password=input_info.cleaned_data['password'])
     login(request, new_user)
     return redirect(reverse('home'))
+
+def main_page_action(request):
+    # return render(request,'home.html')
+    # goods = GoodsInfo.objects.get.all()
+    return render(request, 'home.html', {'goods' : GoodsInfo.objects.all()})
+
+def item_details(request, id):
+    item = GoodsInfo.objects.get(id = id)
+    return render(request, 'item.html', {'item' : item})
 
 
 def register_action(request):
@@ -65,33 +66,49 @@ def logout_action(request):
     logout(request)
     return redirect(reverse('home'))
 
-""" @login_required
- """""" def add_cart(request, id):
-    # if request.method=='GET':
-    #     all_cart_item = User_Profile.objects.get(username=request.user).cart.all()
-    #     return render(request, 'cart.html', {'goods' : all_cart_item})
-        goods_id = request.GET.get(id = id,'')
-        # if goods_id:
-        prev_url = request.META['HTTP_REFERER']
-        # response = redirect("{% url 'details' id %}")
-        response = redirect(prev_url)
-        goods_count = request.COOKIES.get(goods_id)
-        if goods_count:
-            goods_count = int(goods_count)+1
-        else:
-            goods_count = 1
-        response.set_cookie(goods_id, goods_count)
-    return response """
 
 
-    # order = OrderInfo.objects.create(order_id=order_id,
-    #                                 user=user,
-    #                                 addr=addr_obj,
-    #                                 pay_method=pay_id,
-    #                                 transit_price=transport_price,
-    #                                 product_count=total_count,
-    #                                 product_price=total_price)
+
+    # prev_url = request.META['HTTP_REFERER']
+    # response = redirect(prev_url)
+    # return response
+    # 从哪儿来回哪儿去
+
+
+@login_required
+def add_cart(request, id):
+    item = GoodsInfo.objects.get(id=id)
+    # item = get_object_or_404(GoodsInfo, id=id)
+
+    cur_order = OrderGoods()
+    cur_order.goods_info = item
+    cur_order.goods_count = 1
+
+    user = request.user
+
+    User_Profile.objects.get(username = user).cart.add(cur_order)
+    all_cart_item  = User_Profile.objects.get(username=user).cart.all()
+    return render(request, 'cart.html', {'goods' : all_cart_item})
+
+
+# def cart_del(request):
+
+def open_cart(request):
+    if request.method == 'GET':
+        all_cart_item = User_Profile.objects.get(username=request.user).cart.all()
+        return render(request, 'cart.html', {'goods' : all_cart_item})
+
 
 def create_profile(user):
     new_profile = User_Profile(username = user)
     new_profile.save()
+
+
+@login_required
+def personal_info(request):
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {'username': user.username, 'email' : user.email}
+        return render(request, 'personalinfo.html', context)
+    

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br/>
+<div class="card mb-3">
+  
+    <img src="{{MEDIA_URL}}{{item.goods_img}}" class="card-img-top" alt="..." width="200px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+ <br/> 
+<div class="container">
+<div class="row">
+    <div class="col-md">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              0
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li> 
+              <li><a href="#">5</a></li>                 
+            </ul>
+          </div>
+          <a href="{% url 'cart' item.id %}" class="btn btn-primary">Add to cart</a>
+    </div>
+</div>
+</div>
+<br/>
+<div class="card">
+    <div class="card-header">
+      {{item.goods_name }}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{item.goods_desc}}</p>       
+      </blockquote>
+    </div>
+  </div>
+{% endblock %}
+<!-- {{item.goods_name }}
+{{item.goods_price }}
+{{item.goods_pic}} 
+{{item.goods_desc}} -->

@@ -13,13 +13,17 @@ class GoodsInfo(models.Model):
     def __str__(self):
         return self.goods_name
 
+class OrderGoods(models.Model):
+    goods_info = models.ForeignKey(GoodsInfo, on_delete=models.PROTECT)
+    goods_num = models.IntegerField()
+    # goods_order = models.ForeignKey(OrderInfo, on_delete=models.PROTECT)
 
 class User_Profile(models.Model):
     username = models.ForeignKey(User, on_delete=models.PROTECT)
     # email = models.CharField(max_length=200)
     profile_photo = models.ImageField(upload_to='profile_photo')
     # regestion_data = models.DateTimeField()
-    cart = models.ManyToManyField('GoodsInfo', related_name= 'gouwuche')
+    cart = models.ManyToManyField(OrderGoods, related_name= 'gouwuche')
     #预备一个清空购物车操作 my_object.relations.remove(*my_object.relations.all())
 
 
@@ -39,7 +43,3 @@ class OrderInfo(models.Model):
     order_status = models.IntegerField(default=1, choices=status, verbose_name='订单状态') #当前状态
 
 
-class OrderGoods(models.Model):
-    goods_info = models.ForeignKey('GoodsInfo', on_delete=models.PROTECT)
-    goods_num = models.IntegerField()
-    goods_order = models.ForeignKey('OrderInfo', on_delete=models.PROTECT)

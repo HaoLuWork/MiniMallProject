@@ -1,4 +1,4 @@
-{% extends 'base1.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <div class="container">
@@ -15,12 +15,12 @@
                 <div class="col-sm-2 line-center">Total</div>
                 <div class="col-sm-1 line-center">Action</div>
             </div>
+            {% for item in goods %}
             <div class="col-sm-12  list-group-item">
                 <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
-
                     <img src="../Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt=""/>
                 </div>
-                <div class="col-sm-3 line-center">apple</div>
+                <div class="col-sm-3 line-center">{{item.goods_name}}</div>
                 <div class="col-sm-1 line-center">1.00</div>
                 <div class="col-sm-4 line-center">
                     <button type="button" class="btn btn-default">
@@ -31,9 +31,10 @@
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
                 </div>
-                <div class="col-sm-2 line-center">10.00</div>
+                <div class="col-sm-2 line-center">{{item.goods_price}}</div>
                 <div class="col-sm-1 line-center"><button class="btn btn-danger">Deltet</button></div>
             </div>
+            {% endfor %}
         </div>
         <div class="col-sm-offset-7 col-sm-5" style="padding: 30px;">
             <div class="col-sm-6 btn btn-success btn-block">back to home</div>

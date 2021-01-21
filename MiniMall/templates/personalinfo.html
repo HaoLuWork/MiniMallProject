@@ -1,4 +1,4 @@
-{% extends 'base1.html' %}
+{% extends 'base.html' %}
 
 
 {% block content %}
@@ -38,8 +38,8 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="userHome">
-                <p> user name：</p>
-                <p>password：</p>
+                <p>username: {{username}}</p>
+                <p>email: {{email}}</p>
                 <p>address：</p>
             </div>
             <div role="tabpanel" class="tab-pane" id="editInfo">
