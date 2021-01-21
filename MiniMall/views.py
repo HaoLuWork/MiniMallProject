@@ -80,9 +80,11 @@ def add_cart(request, id):
     item = GoodsInfo.objects.get(id=id)
     # item = get_object_or_404(GoodsInfo, id=id)
 
-    cur_order = OrderGoods()
-    cur_order.goods_info = item
-    cur_order.goods_count = 1
+    cur_order = OrderGoods(goods_info = item)
+    # cur_order.save()
+    # cur_order.goods_info = item
+    # cur_order.goods_count = 1
+
 
     user = request.user
 
