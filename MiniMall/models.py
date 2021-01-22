@@ -14,9 +14,11 @@ class GoodsInfo(models.Model):
         return self.goods_name
 
 class OrderGoods(models.Model):
+    username = models.ForeignKey(User, on_delete=models.PROTECT)
     goods_info = models.ForeignKey(GoodsInfo, on_delete=models.PROTECT)
     goods_num = models.IntegerField()
     # goods_order = models.ForeignKey(OrderInfo, on_delete=models.PROTECT)
+
 
 class User_Profile(models.Model):
     username = models.ForeignKey(User, on_delete=models.PROTECT)
@@ -25,6 +27,7 @@ class User_Profile(models.Model):
     # regestion_data = models.DateTimeField()
     cart = models.ManyToManyField(OrderGoods, related_name= 'gouwuche')
     #预备一个清空购物车操作 my_object.relations.remove(*my_object.relations.all())
+
 
 
 class OrderInfo(models.Model):

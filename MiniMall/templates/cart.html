@@ -1,14 +1,5 @@
 {% extends 'base.html' %}
-{% block loginstate %}
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">UserNamerHere <span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <li><a href="{%  url 'info' %}">Personal Center</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-      </ul>
-    </li>
-{% endblock %}
+
 
 {% block content %}
 <div class="container">
@@ -25,23 +16,23 @@
                 <div class="col-sm-2 line-center">Total</div>
                 <div class="col-sm-1 line-center">Action</div>
             </div>
-            {% for item in goods %}
+            {% for item in cart_items %}
             <div class="col-sm-12  list-group-item">
                 <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
                     <img src="../Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt=""/>
                 </div>
-                <div class="col-sm-3 line-center">{{item.goods_name}}</div>
-                <div class="col-sm-1 line-center">1.00</div>
+                <div class="col-sm-3 line-center">{{item.goods_info.goods_name}}</div>
+                <div class="col-sm-1 line-center">{{item.goods_info.goods_price}}</div>
                 <div class="col-sm-4 line-center">
                     <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                     </button>
-                    <input type="text" class="small" value="123"/>
+                    <input type="text" class="small" value="{{item.goods_num}}"/>
                     <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
                 </div>
-                <div class="col-sm-2 line-center">{{item.goods_price}}</div>
+                <div class="col-sm-2 line-center">{{item.goods_info.goods_price}}</div>
                 <div class="col-sm-1 line-center"><button class="btn btn-danger">Deltet</button></div>
             </div>
             {% endfor %}

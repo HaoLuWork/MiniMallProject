@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 
-{% block loginstate %}
-<li><a href="{% url 'login' %}">Login</a></li>
-{% endblock %}
 
 {% block content %}
 <div class="row thumbnail">
@@ -21,8 +18,8 @@
                       </select>
                 </p>
                 <p>
-                    <a type='submit' class="btn btn-primary btn-block" role="button" href="{% url 'add_cart' item.id %}">Buy now</a> 
-                    <button type='submit' class="btn btn-default btn-block" role="button" href="{% url 'add_cart' item.id %}">Add to Cart</button>
+                    <a type='submit' class="btn btn-primary btn-block" role="button" href="{% url 'add_cart_from_item' item.id %}">Buy now</a> 
+                    <button type='submit' class="btn btn-default btn-block" role="button" href="{% url 'add_cart_from_item' item.id %}">Add to Cart</button>
                 </p>
             </div>
     </div>

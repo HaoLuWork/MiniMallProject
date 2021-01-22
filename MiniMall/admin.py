@@ -1,5 +1,5 @@
 from django.contrib import admin
-from MiniMall.models import GoodsInfo, OrderInfo, User_Profile
+from MiniMall.models import GoodsInfo, OrderInfo, User_Profile, OrderGoods
 
 class GoodsInfoAdmin(admin.ModelAdmin):
     list_display=[  'id','goods_name', 'goods_price', 'goods_desc']
@@ -22,3 +22,5 @@ class OrderInfoAdmin(admin.ModelAdmin):
 admin.site.register(OrderInfo, OrderInfoAdmin)
 # 需要在models里导入一个model类
 admin.site.register(User_Profile)
+
+admin.site.register(OrderGoods)

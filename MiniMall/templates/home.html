@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
-{% block loginstate %}
-<li><a href="{% url 'login' %}">Login</a></li>
-{% endblock %}
+
+
+
+
 
 {% block content %}
 <script>
@@ -19,7 +20,7 @@
         <p><a class="btn btn-primary btn-lg" href="#" role="button">this is a button</a></p>
     </div>
 
-    <ul class="nav nav-tabs" id="myTabs">
+    <!-- <ul class="nav nav-tabs" id="myTabs">
         <li class="active"><a href="#" >Temp</a></li>
         <li><a href="#">Temp</a></li>
         <li><a href="#">Temp</a></li>
@@ -27,7 +28,8 @@
         <li><a href="#">Temp</a></li>
         <li><a href="#">Temp</a></li>
         <li><a href="#">Temp</a></li>
-    </ul>
+    </ul> -->
+    
     <br/>
         <div class="row">
             {% for item in goods %}
@@ -48,13 +50,14 @@
                                 <option>5</option>
                             </select>
                         </p>
-                        <p><a class="btn btn-primary btn-block" role="button" href="#">Add to cart</a></p>
+                        <p><a class="btn btn-primary btn-block" role="button" href="{% url 'add_cart_from_home' item.id %}">Add to cart</a></p>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-    <br/>    
+    <br/> 
+
     <nav class="center">
         <ul class="pagination  pagination-lg">
             <li>
