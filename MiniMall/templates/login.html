@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block loginstate %}
+<li><a href="{% url 'login' %}">Login</a></li>
+{% endblock %}
 
 {% block content %}
 
@@ -13,7 +16,8 @@
         {% endfor %}
     </table>
     {% csrf_token %}
-    <button id="id_login_button" type="submit">登陆</button>
+    <button id="id_login_button" type="submit">Login</button>
+    <a href="{% url 'register' %}">Register</a>
   </form>
 
 {% endblock %}
