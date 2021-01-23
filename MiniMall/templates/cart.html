@@ -16,7 +16,7 @@
                 <div class="col-sm-2 line-center">Total</div>
                 <div class="col-sm-1 line-center">Action</div>
             </div>
-            {% for item in cart_items %}
+            {% for item in cart_goods_list %}
             <div class="col-sm-12  list-group-item">
                 <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
                     <img src="../Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt=""/>
@@ -27,12 +27,12 @@
                     <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                     </button>
-                    <input type="text" class="small" value="{{item.goods_num}}"/>
+                    <input type="text" class="small" value="{{cart_goods_count}}"/>
                     <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
                 </div>
-                <div class="col-sm-2 line-center">{{item.goods_info.goods_price}}</div>
+                <div class="col-sm-2 line-center">{{cart_goods_money}}</div>
                 <div class="col-sm-1 line-center"><button class="btn btn-danger">Deltet</button></div>
             </div>
             {% endfor %}
