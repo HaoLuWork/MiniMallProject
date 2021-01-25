@@ -64,3 +64,30 @@ def item_details(request, id):
                                         'cart_goods_money' : cart_goods_money})
 
 
+def show_cag(request, id):
+    cag_id = str(id)
+    item_list = GoodsInfo.objects.filter(goods_cag= cag_id)
+    categories = GoodsCategory.objects.all()
+    # 以下是购物车部分
+    cart_goods_list = []
+    cart_goods_count = 0
+    cart_goods_money = 0
+    for goods_id, goods_num in request.COOKIES.items():
+        if not goods_id.isdigit():
+            continue
+        cart_goods = GoodsInfo.objects.get(id=goods_id) # 找到当前id对应的物品
+        cart_goods.goods_num = goods_num # 设置当前物品的数量
+        cart_goods.goods_sum_price = cart_goods.goods_price * goods_num
+            # cart_goods可以理解为单独的实例，而不是GoodsInfo类的实例
+            # 所以可以给他创建额外的field，比如这里的goods_num
+        cart_goods_list.append(cart_goods) # 把当前物品添加到list里
+        cart_goods_count += int(goods_num) # 计算总数量
+        cart_goods_money += int(goods_num) * cart_goods.goods_price
+
+
+    # 购物车的商品总数量
+    return render(request, 'home.html',{'categories' : categories,
+                                        'cart_goods_list' : cart_goods_list, 
+                                        'cart_goods_count' : cart_goods_count,
+                                        'cart_goods_money' : cart_goods_money,
+                                        'goods_list' : item_list})

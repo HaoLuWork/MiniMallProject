@@ -155,3 +155,9 @@ x购物车页面
     研究一下怎么把项目host到云上
     搜一搜，类似于get or 404，或者filter()这些方法里，有没有类似的东西可以实现java里面，hashmap.getOrDefault(key, defaulvalue)这个功能
 
+
+购物车里小图和总价显示
+结算页面
+详情页的button，和一部分美化
+主页上的滚动图片
+登陆和注册的功能

@@ -19,4 +19,5 @@ urlpatterns = [
     # path('cart2/<int:id>', views.add_cart_from_item, name='add_cart_from_item'),
     path('remove_cart/<int:id>', remove_cart, name='remove_cart'),
     path('item/<int:id>', views.item_details, name='details'),
+    path('cag/<int:id>', views.show_cag, name='cag'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
