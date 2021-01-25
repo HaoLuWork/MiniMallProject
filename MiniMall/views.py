@@ -52,6 +52,7 @@ def main_page_action(request):
     else:
         cart_goods_list = []
         cart_goods_count = 0
+        cart_goods_money = 0
         for goods_id, goods_num in request.COOKIES.items():
             if not goods_id.isdigit():
                 continue # 
@@ -59,7 +60,8 @@ def main_page_action(request):
             cart_goods.goods_num = goods_num # 设置当前物品的数量
             cart_goods_list.append(cart_goods) # 把当前物品添加到list里
             cart_goods_count += int(goods_num) # 计算总数量
-        return render(request, 'home.html', {'goods' : all_goods, 'user' : user, 'cart_goods_list' : cart_goods_list, 'cart_goods_count' : cart_goods_count})
+            cart_goods_money += cart_goods_count * cart_goods.goods_price
+        return render(request, 'home.html', {'goods' : all_goods, 'user' : user, 'cart_goods_list' : cart_goods_list, 'cart_goods_count' : cart_goods_count , 'cart_goods_money' : cart_goods_money})
     # return render(request, 'home.html', {'goods' : goods, 'user' : ''})
 
 def item_details(request, id):
@@ -220,3 +222,5 @@ def personal_info(request):
         context = {'username': user.username, 'email' : user.email}
         return render(request, 'personalinfo.html', context)
     
+
+# def remove_cart(request):

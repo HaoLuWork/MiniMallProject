@@ -59,12 +59,12 @@
                     {% for cart_items in cart_goods_list %}
                         <li>
                             <a href="#" class="photo"><img src="images/thumb/thumb01.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">{{cart_items.goods_info.goods_name}} </a></h6>
-                            <p>{{cart_items.goods_num}}x - <span class="price">{{cart_items.goods_info.goods_price}}</span></p>
+                            <h6><a href="#">{{cart_items.goods_name}} </a></h6>
+                            <p>{{cart_items.goods_num}}x - <span class="price">{{cart_items.goods_price}}</span></p>
                         </li>
                     {% endfor %}
                     <li class="total">
-                        <span class="pull-right"><strong>Total</strong>: $0.00</span>
+                        <span class="pull-right"><strong>Total</strong>: ${{cart_goods_money}}</span>
                         <a href="{% url 'cart' %}" class="btn btn-default btn-cart">Cart</a>
                     </li>
                 </ul>
