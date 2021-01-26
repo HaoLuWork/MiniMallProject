@@ -42,7 +42,6 @@ def open_cart(request):
                                             'cart_goods_money' : cart_goods_money,
                                             'user' : user,})
 
-
 def remove_cart(request, id):
     goods_id = str(id)
     prev_url = request.META['HTTP_REFERER']

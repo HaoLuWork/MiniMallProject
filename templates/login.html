@@ -7,9 +7,9 @@
   <form style="text-align:center" method='post' action="{% url 'login' %}">
     <table style="margin: auto">
         {% for field in form.visible_fields %}
-            <tr  style="text-align:center">
-                <td >{{ field.label_tag }}</td>
-                <td >{{ field }}</td>
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                <td>{{ field }}</td>
             </tr>
         {% endfor %}
     </table>
