@@ -12,13 +12,18 @@ def add_cart(request, id, count):
     response = redirect(prev_url)
     goods_count = request.COOKIES.get(goods_id)
     if goods_count:
-        goods_count = int(goods_count)+count
+        if not int(goods_count) > 99-count:
+            goods_count = int(goods_count)+count
     else:
         goods_count= count
     response.set_cookie(goods_id, goods_count)
     return response
 
 def open_cart(request):
+    if request.user.is_authenticated: 
+        user = request.user
+    else:
+        user = ''
     cart_goods_list = []
     cart_goods_count = 0
     cart_goods_money = 0
@@ -34,7 +39,8 @@ def open_cart(request):
     cart_goods_list.sort(key = lambda x:x.id)
     return render(request, 'cart.html', {'cart_goods_list' : cart_goods_list, 
                                             'cart_goods_count' : cart_goods_count , 
-                                            'cart_goods_money' : cart_goods_money})
+                                            'cart_goods_money' : cart_goods_money,
+                                            'user' : user,})
 
 
 def remove_cart(request, id):
@@ -51,7 +57,8 @@ def cart_item_pp(request, id):
     prev_url = request.META['HTTP_REFERER']
     response = redirect(prev_url)
     goods_count = request.COOKIES.get(goods_id)
-    goods_count = int(goods_count) + 1
+    if not int(goods_count) >= 99 :
+        goods_count = int(goods_count) + 1
     response.set_cookie(goods_id, goods_count)
     return response
 

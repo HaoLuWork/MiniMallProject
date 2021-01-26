@@ -10,12 +10,12 @@
       </svg>
         <span class="badge">{{cart_goods_count}}</span>
     </a>
-    <ul class="dropdown-menu cart-list">
+    <ul style="width:300%" class="dropdown-menu cart-list">
         {% for cart_items in cart_goods_list %}
             <li>
-                <a href="#" class="photo"><img src="images/thumb/thumb01.jpg" class="cart-thumb" alt="" /></a>
-                <h6><a href="#">{{cart_items.goods_name}} </a></h6>
-                <p>{{cart_items.goods_num}}x - <span class="price">{{cart_items.goods_price}}</span></p>
+                <span><a href="{% url 'details' cart_items.id %}"  class="photo"><img src="{{MEDIA_URL}}{{cart_items.goods_img}}" style="height:30%; width:30%" class="cart-thumb" alt="" /></a></span>
+                <span style="height:150%; width:150%"><a href="{% url 'details' cart_items.id %}" >{{cart_items.goods_name}} </a></span>
+                <span>{{cart_items.goods_num}}x  <span class="price">${{cart_items.goods_price}}</span></span>
             </li>
         {% endfor %}
         <li class="total">
@@ -53,7 +53,7 @@
 {% block content %}
 <div class="row thumbnail">
     <div class="col-sm-4">
-            <img style="width: 100%; height: 500px; display: block;" src="{{MEDIA_URL}}{{item.goods_img}}"  >
+            <img style="width: 100%; height: 100%; display: block;" src="{{MEDIA_URL}}{{item.goods_img}}"  >
             <div class="caption center">
                 <h3>{{ item.goods_name }}</h3>
                 <p>Price: {{item.goods_price}}</p>

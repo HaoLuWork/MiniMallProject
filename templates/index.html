@@ -32,33 +32,32 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{% url 'home' %}">Home</a></li>
-
-                <li><a href="{% url 'cart' %}">临时购物车</a></li>
-                
+                <!-- <li><a href="{% url 'cart' %}">临时购物车</a></li> -->
             </ul>
-            <ul class="nav navbar-nav navbar-right hidden-sm">
+            <ul class="nav navbar-nav navbar-right">
                 {% if user == '' %}
-                    <li><a href="">Login</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
                 {% else %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                        <li><a href="">Personal Center</a></li>
+                        <li><a href="{% url 'info' %}">Personal Center</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="">Logout</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
                         </ul>
                     </li>
                 {% endif %}
+
                 {% block cart %}
                 {% endblock %}
-            
-                <li>
+
+                <!-- <li>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
-                </li>
-            </ul>          
+                </li> -->
+            </ul>
         </div><!--/.nav-collapse -->
         </div>
     </div>

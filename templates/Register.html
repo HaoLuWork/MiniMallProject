@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+  {% csrf_token %}
+  <form style="text-align:center" method="post" action="{% url 'register' %}">
+    <table style="margin: auto">
+        {% for field in form.visible_fields %}
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                <td >{{ field }}</td>
+                <td class="errorlist">
+                    {% for error in field.errors %} {{ error }} {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% csrf_token %}
+    <button style="width:200px" id="id_register_button" type="submit">注册</button>
+  </form>
+
+  {% endblock %}

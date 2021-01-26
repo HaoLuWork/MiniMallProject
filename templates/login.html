@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+  {% csrf_token %}
+  <form style="text-align:center" method='post' action="{% url 'login' %}">
+    <table style="margin: auto">
+        {% for field in form.visible_fields %}
+            <tr  style="text-align:center">
+                <td >{{ field.label_tag }}</td>
+                <td >{{ field }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% csrf_token %}
+    <button style="width:200px" id="id_login_button" type="submit">Login</button>
+    <!-- <button id="id_register_button" type="button">Register</button> -->
+    <p>if you not have an account yet, click here to <a href="{% url 'register' %}">sign up</a></p>
+  </form>
+{% endblock %}

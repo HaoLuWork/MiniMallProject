@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+<h3 class="common_title">收货地址</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="">
+        <dl>
+            <dd>
+                <table>
+                    <tr>
+                        <td>收货地址：</td>
+                        <td><input style="width:100%" type="text" name="addr"></td>
+                    </tr>
+                    <tr>
+                        <td>收货人：</td>
+                        <td><input style="width:100%" type="text" name="recv"></td>
+                    </tr>
+                    <tr>
+                        <td>联系电话：</td>
+                        <td><input style="width:100%" type="text" name="tele"></td>
+                    </tr>
+                    <tr>
+                        <td>备注：</td>
+                        <td>
+                            <textarea style="width:100%" name="extra"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+        </dl>
+    </div>
+</form>
+
+{% endblock %}
