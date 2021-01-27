@@ -119,7 +119,7 @@ def index(request):
 
 
     # 购物车的商品总数量
-    return render(request, 'home.html',{'categories' : categories,
+    return render(request, 'orderFinish.html',{'categories' : categories,
                                         'user' : user,
                                         'cart_goods_list' : cart_goods_list, 
                                         'cart_goods_count' : cart_goods_count,
