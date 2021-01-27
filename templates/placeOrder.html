@@ -13,13 +13,15 @@
                     <th>Number</th>
                     <th>Total</th>
                 </tr>
+                {% for item in cart_goods_list %}
                 <tr>
-                    <th>     </th>
-                    <th>aoole</th>
-                    <th>10.2</th>
-                    <th>3</th>
-                    <th>25.6</th>
+                    <th><img src="{{MEDIA_URL}}{{item.goods_img}}" style="width:50px; height:50px"></th>
+                    <th>{{item.goods_name}}</th>
+                    <th>{{item.goods_price}}</th>
+                    <th>{{item.goods_num}}</th>
+                    <th>{{item.sum_price}}</th>
                 </tr>
+                {% endfor %}
                 <tr></tr>
             </table>
         </div>
@@ -65,7 +67,7 @@
     </div>
  </form>
     <div class="col-sm-offset-7 col-sm-5" style="padding: 30px;">
-        <div class="col-sm-6 btn btn-success btn-block">Submit</div>       
+        <a href="{% url 'submit_order' %}"><div class="col-sm-6 btn btn-success btn-block">Submit</div></a>  
     </div>
 </div>
 

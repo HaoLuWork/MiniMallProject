@@ -20,4 +20,7 @@ urlpatterns = [
     path('remove_cart/<int:id>', remove_cart, name='remove_cart'),
     path('item/<int:id>', views.item_details, name='details'),
     path('cag/<int:id>', views.show_cag, name='cag'),
+    path('place_order', views.place_order, name='pay'),
+    path('submit_order', views.submit_order, name='submit_order'),
+    path('orderfinish/', views.order_finish, name='finish'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

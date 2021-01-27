@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from goods.models import GoodsCategory, GoodsInfo
-from cart.models import OrderInfo
+from cart.models import OrderInfo, OrderGoods
 from webapps.forms import LoginForm, RegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse, path
+import time
 
 def login_action(request):
     context = {}
@@ -119,7 +120,7 @@ def index(request):
 
 
     # 购物车的商品总数量
-    return render(request, 'orderFinish.html',{'categories' : categories,
+    return render(request, 'home.html',{'categories' : categories,
                                         'user' : user,
                                         'cart_goods_list' : cart_goods_list, 
                                         'cart_goods_count' : cart_goods_count,
@@ -183,40 +184,26 @@ def show_cag(request, id):
                                         'cart_goods_money' : cart_goods_money,
                                         'goods_list' : item_list})
 
-def payment(request):
-    cart_goods_list = []
-    cart_goods_count = 0
-    cart_goods_money = 0
-    for goods_id, goods_num in request.COOKIES.items():
-        if not goods_id.isdigit():
-            continue # 
-        cart_goods = GoodsInfo.objects.get(id=goods_id) # 找到当前id对应的物品
-        cart_goods.goods_num = goods_num # 设置当前物品的数量
-        cart_goods.sum_price = goods_num * cart_goods.goods_price
-        cart_goods_list.append(cart_goods) # 把当前物品添加到list里
-        cart_goods_count += int(goods_num) # 计算总数量
-        cart_goods_money += int(goods_num) * cart_goods.goods_price
-    cart_goods_list.sort(key = lambda x:x.id)
-    return render(request, 'placeOrder.html', {'cart_goods_list' : cart_goods_list, 
-                                                'cart_goods_count' : cart_goods_count , 
-                                                'cart_goods_money' : cart_goods_money,
-                                                'user' : user,})
+
 
 
 def submit_order(request):
     addr = request.POST.get('addr','')
     recv = request.POST.get('recv','')
     tele = request.POST.get('tele','')
-    extra = request.POST.get('extra')
+    extra = request.POST.get('extra', '')
+
+    print(addr)
 
     order_info = OrderInfo()
     order_info.order_addr = addr
     order_info.order_tele = tele
     order_info.order_recv = recv
     order_info.order_extra = extra
-    order_info.order_id = str(time.time() * 1000) + str(time.clock() * 1000000)
+    order_info.order_id = str(time.time() * 1000) # + str(time.clock() * 1000000)
     order_info.save()
 
+    response = redirect('orderfinish/?id=%s' % order_info.order_id)
 
     for goods_id, goods_num in request.COOKIES.items():
         if not goods_id.isdigit():
@@ -225,6 +212,50 @@ def submit_order(request):
         order_goods = OrderGoods()
         order_goods.goods_info = cart_goods
         order_goods.goods_num = goods_num
-        order_goods.goods_info = order_info
+        order_goods.goods_order = order_info
         order_goods.save()
-    return render(request, 'orderFinish.html')
+        response.delete_cookie(goods_id)
+
+    return response
+
+
+
+def order_finish(request):
+    order_id = request.GET.get('id', '')
+    orderinfo = OrderInfo.objects.get(order_id=order_id)
+    order_goods_list = OrderGoods.objects.filter(goods_order=orderinfo)
+
+    total_money = 0
+    total_num = 0
+    for goods in order_goods_list:
+        goods.total_money = goods.goods_info.goods_price * goods.goods_num
+        total_money += goods.total_money
+        total_num += goods.goods_num
+    
+
+    return render(request, 'orderFinish.html', {'orderinfo' : orderinfo, 
+                                                'order_goods_list' : order_goods_list , 
+                                                'total_money' : total_money,
+                                                'total_num' : total_num})
+
+def place_order(request):
+    if request.user.is_authenticated: 
+        user = request.user
+    else:
+        user = ''
+    cart_goods_list = []
+    cart_goods_count = 0
+    cart_goods_money = 0
+    for goods_id, goods_num in request.COOKIES.items():
+        if not goods_id.isdigit():
+            continue # 
+        cart_goods = GoodsInfo.objects.get(id=goods_id) # 找到当前id对应的物品
+        cart_goods.goods_num = goods_num # 设置当前物品的数量
+        cart_goods.sum_price = int(goods_num) * int(cart_goods.goods_price)
+        cart_goods_list.append(cart_goods) # 把当前物品添加到list里
+        cart_goods_count += int(goods_num) # 计算总数量
+        cart_goods_money += int(goods_num) * cart_goods.goods_price
+    return render(request, 'placeOrder.html', {'cart_goods_list' : cart_goods_list, 
+                                            'cart_goods_count' : cart_goods_count , 
+                                            'cart_goods_money' : cart_goods_money,
+                                            'user' : user,})

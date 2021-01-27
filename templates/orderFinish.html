@@ -10,16 +10,16 @@
         <div class="col-sm-12 ">
            <table>
                <tr>
-                   <th>id：</th><td>123-131-4234-1314-131</td>
+                   <th>id：</th><td>{{ orderinfo.order_id}}</td>
                </tr>              
                <tr>
-                   <th>Name：</th><td>阿巴巴</td>
+                   <th>Name：</th>{{ orderinfo.order_recv }}<td></td>
                </tr>
                <tr>
-                   <th>Address：</th><td>1212121</td>
+                   <th>Address：</th><td>{{ orderinfo.order_addr }}</td>
                </tr>
                <tr>
-                   <th>Tel：</th><td>12345678901</td>
+                   <th>Tel：</th><td>{{ orderinfo.order_tele }}</td>
                </tr>
            </table>
         </div>
@@ -32,13 +32,15 @@
                     <th>number</th>
                     <th>total</th>
                 </tr>
-                <tr>
-                    <th>     </th>
-                    <th>aoole</th>
-                    <th>10.2</th>
-                    <th>3</th>
-                    <th>25.6</th>
-                </tr>
+                {% for order_goods in order_goods_list %}
+                    <tr>
+                        <th><img src="{{MEDIA_URL}}{{order_goods.goods_info.goods_img}}"></th>
+                        <th>{{order_goods.goods_info.goods_name}}</th>
+                        <th>{{order_goods.goods_info.goods_price}}</th>
+                        <th>{{order_goods.goods_num}}</th>
+                        <th>{{order_goods.total_money}}</th>
+                    </tr>
+                {% endfor %}
                 <tr></tr>
             </table>
         </div>
@@ -46,14 +48,14 @@
         <div class="col-sm-12 ">
             <table>
                 <tr>
-                 <th>Total Price：</th><td><span class="text-danger">123.0</span></label></td>
+                 <th>Total Price：</th><td><span class="text-danger">{{total_money}}</span></label></td>
                 </tr>
             </table>
         </div>
     </div>
     <div></div>
     <div class="col-sm-offset-7 col-sm-5" style="padding: 30px;">
-        <div class="col-sm-6 btn btn-success btn-block">Back to Home</div>       
+        <div href="{% url 'home' %}" class="col-sm-6 btn btn-success btn-block">Back to Home</div>       
     </div>
 </div>
 {% endblock %}

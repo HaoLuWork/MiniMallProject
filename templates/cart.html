@@ -10,8 +10,8 @@
         <div class=" list-group">
 
             <div class="col-sm-12 thumbnail">
-                <div class="col-sm-1 line_center"></div>
-                <div class="col-sm-2 line-center">Item</div>
+                <div class="col-sm-1 line_center">image</div>
+                <div class="col-sm-3 line-center">Item</div>
                 <div class="col-sm-2 line-center">Price</div>
                 <div class="col-sm-3 line-center">Number</div>
                 <div class="col-sm-2 line-center">Total</div>
@@ -19,12 +19,12 @@
             </div>
             {% for cart_items in cart_goods_list %}
                 <div class="col-sm-12  list-group-item">
-                    <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
+                    <div class="col-sm-1 line-center" style="width: 8%;height: 66px;">
                         <img src="{{MEDIA_URL}}{{cart_items.goods_img}}" style="height: 100%">
                     </div>
                     <div class="col-sm-3 line-center"><a href="{% url 'details' cart_items.id %}">{{cart_items.goods_name}}</a></div>
-                    <div class="col-sm-1 line-center">{{cart_items.goods_price}}</div>
-                    <div class="col-sm-4 line-center">
+                    <div class="col-sm-2 line-center">{{cart_items.goods_price}}</div>
+                    <div class="col-sm-3 line-center">
                         <a href="{% url 'cart_item_mm' cart_items.id %}" type="button" class="btn btn-default">
                             <span  class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                         </a>
@@ -33,8 +33,8 @@
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </a>
                     </div>
-                    <div class="col-sm-1 line-center">{{cart_items.sum_price}}</div>
-                    <div class="col-sm-2 line-center">
+                    <div class="col-sm-2 line-center">{{cart_items.sum_price}}</div>
+                    <div class="col-sm-1 line-center">
                         <a class="btn btn-danger" href="{% url 'remove_cart' cart_items.id %}">Deltet</a>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
         </div>
         <div class="col-sm-offset-7 col-sm-5" style="padding: 30px;">
             <div > Total: {{cart_goods_money}}</div>
-            <div class="col-sm-6  btn btn-success btn-block">Submit</div>
+            <a href="{% url 'pay' %}"><div class="col-sm-6  btn btn-success btn-block">Submit</div></a>
         </div>
     </div>
 </div>
