@@ -193,7 +193,6 @@ def submit_order(request):
     tele = request.POST.get('tele','')
     extra = request.POST.get('extra', '')
 
-    print(addr)
 
     order_info = OrderInfo()
     order_info.order_addr = addr

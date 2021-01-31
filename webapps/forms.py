@@ -38,3 +38,9 @@ class RegistrationForm(forms.Form):
         if User.objects.filter(username__exact=username):
             raise forms.ValidationError("Username is already taken.")
         return username
+
+class SubmitOrderForm(forms.Form):
+    address = forms.CharField(max_length=200, widget=forms.TextInput())
+    name = forms.CharField(max_length=20, widget=forms.TextInput())
+    tel = forms.CharField(max_length=11, widget=forms.TextInput())
+    note = forms.CharField(max_length=500, widget=forms.TextInput())
