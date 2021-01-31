@@ -37,7 +37,7 @@
     <div></div>
     <br/>
  <h3 class="common_title">{{user.username}}</h3>
- <form action="" method="post">
+ <form action="{% url 'submit_order' %}" method="post">
     {% csrf_token %}
     <div class="">
         <dl>

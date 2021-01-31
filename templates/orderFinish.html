@@ -34,7 +34,7 @@
                 </tr>
                 {% for order_goods in order_goods_list %}
                     <tr>
-                        <th><img src="{{MEDIA_URL}}{{order_goods.goods_info.goods_img}}"></th>
+                        <th><img src="{{MEDIA_URL}}{{order_goods.goods_info.goods_img}}" style="width:50px; height:50px"></th>
                         <th>{{order_goods.goods_info.goods_name}}</th>
                         <th>{{order_goods.goods_info.goods_price}}</th>
                         <th>{{order_goods.goods_num}}</th>

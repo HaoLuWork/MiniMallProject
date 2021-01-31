@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from goods.models import GoodsCategory, GoodsInfo
 from cart.models import OrderInfo, OrderGoods
-from webapps.forms import LoginForm, RegistrationForm
+from webapps.forms import LoginForm, RegistrationForm, SubmitOrderForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse, path
@@ -193,6 +193,14 @@ def submit_order(request):
     tele = request.POST.get('tele','')
     extra = request.POST.get('extra', '')
 
+    # input_info = SubmitOrderForm(request.POST)
+    # context['form'] = input_info
+
+    # if not input_info.is_valid():
+    #     return render(request, 'placeOrder.html', context)
+
+    # new_user = authenticate(username=input_info.cleaned_data['username'],
+    #                         password=input_info.cleaned_data['password'])
 
     order_info = OrderInfo()
     order_info.order_addr = addr
@@ -238,6 +246,7 @@ def order_finish(request):
                                                 'total_num' : total_num})
 
 def place_order(request):
+    form = SubmitOrderForm()
     if request.user.is_authenticated: 
         user = request.user
     else:
@@ -257,4 +266,5 @@ def place_order(request):
     return render(request, 'placeOrder.html', {'cart_goods_list' : cart_goods_list, 
                                             'cart_goods_count' : cart_goods_count , 
                                             'cart_goods_money' : cart_goods_money,
-                                            'user' : user,})
+                                            'user' : user,
+                                            'form' : form,})
