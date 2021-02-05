@@ -45,15 +45,15 @@
                 <table>
                     <tr>
                         <td>Address：</td>
-                        <td><input style="width:100%" type="text" name="addr"></td>
+                        <td><input style="width:100%" type="text" name="addr" required></td>
                     </tr>
                     <tr>
                         <td>Name：</td>
-                        <td><input style="width:100%" type="text" name="recv"></td>
+                        <td><input style="width:100%" type="text" name="recv" required></td>
                     </tr>
                     <tr>
                         <td>Tel：</td>
-                        <td><input style="width:100%" type="text" name="tele"></td>
+                        <td><input style="width:100%" type="text" name="tele" required></td>
                     </tr>
                     <tr>
                         <td>Note：</td>
@@ -65,10 +65,15 @@
             </dd>
         </dl>
     </div>
- </form>
     <div class="col-sm-offset-7 col-sm-5" style="padding: 30px;">
-        <a href="{% url 'submit_order' %}"><div class="col-sm-6 btn btn-success btn-block">Submit</div></a>  
+        <!-- <a href=""><div class="col-sm-6 btn btn-success btn-block">Submit</div></a>   -->
+        <input type="submit" value="submit">
     </div>
+    
+ </form>
+
+
+    
 </div>
 
 
