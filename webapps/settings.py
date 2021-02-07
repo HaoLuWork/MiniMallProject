@@ -26,7 +26,7 @@ SECRET_KEY = 's)(!zj_ewt$&jiv0!q9y@)7op9x++k^ubgi#hjchb02vu35*fe'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["13.58.193.107","3.141.108.199","shop.minimall.link",]
 
 
 # Application definition
@@ -128,6 +128,6 @@ USE_TZ = True
 # 系统会去staticfile_dirs里的地址寻找内容
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 MEDIA_URL = '/pic/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'pic')
