@@ -46,7 +46,7 @@
     </div>
 
     <ul class="nav nav-tabs" id="myTabs">
-        <li class="active"><a href="{% url 'home' %}" >全部商品</a></li>
+        <li class="active"><a href="{% url 'home' %}" >All Items</a></li>
         {% for cag in categories %}
             <li class="active"><a href="{% url 'cag' cag.id %}" >{{cag.cag_name}}</a></li>
         {%  endfor %}
