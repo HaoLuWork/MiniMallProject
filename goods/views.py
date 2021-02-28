@@ -49,7 +49,7 @@ def register_action(request):
                             password=input_info.cleaned_data['password1'])
 
     login(request, new_user)
-    create_profile(new_user)
+    #create_profile(new_user)
     return redirect(reverse('home'))
 
 def logout_action(request):
